@@ -1,0 +1,14 @@
+{
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-pandas": "^1.0.5",
+        "node-red-contrib-ui-artless-gauge": "~0.1.21",
+        "node-red-contrib-ui-media": "~1.2.0",
+        "node-red-dashboard": "~2.20.0",
+        "node-red-node-ui-table": "~0.3.1",
+        "scikit-learn": "^0.1.0"
+    }
+}
