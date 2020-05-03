@@ -81,16 +81,17 @@ void getSensorsData(char* txt, int *txtLen){
 
 void getMachinesData(int mcId, char* txtPayload, int *txtLen){
 
-    srand(time(0));
-    int max1 = 1E9;
+    time_t rtime = time(&rtime) + mcId;
+    srand(rtime);
     // create an object
     json o;
+    
     o["machinesdata"]["id"]    = mcId;
     o["machinesdata"]["state"] = "On";
-    o["machinesdata"]["onlinehours"]      = rand() % (int)1E9;
-    o["machinesdata"]["maintenancehours"] = rand() % (int)1E9;
-    o["machinesdata"]["hourproduction"]   = rand() % (int)1E2;
-    o["machinesdata"]["percdefects"]      = rand() % (int)1E3;
+    o["machinesdata"]["onlinehours"]      = (rand() % (int)1E6);
+    o["machinesdata"]["maintenancehours"] = rand() % (int)1E6;
+    o["machinesdata"]["hourproduction"]   = rand() % (int)1E3;
+    o["machinesdata"]["percdefects"]      = rand() % (int)1E2;
 
     *txtLen = o.dump().length();
     strcpy(txtPayload, o.dump().c_str()); // Serialize message
@@ -197,13 +198,13 @@ int main(int argc, char* argv[])
                      case 2:
                         if(!machineSt[0]) continue;
                         getMachinesData(1, txMsg, &txLen);
-                        strcpy(txTopic, TOPIC_STATERX(1));
+                        strcpy(txTopic, TOPIC_MACDATA);
                         txSendFlag = true;
                         break;
                      case 3:
                         if(!machineSt[1]) continue;
                         getMachinesData(2, txMsg, &txLen);
-                        strcpy(txTopic, TOPIC_STATERX(2));
+                        strcpy(txTopic, TOPIC_MACDATA);
                         txSendFlag = true;
                         break;
                     default:
