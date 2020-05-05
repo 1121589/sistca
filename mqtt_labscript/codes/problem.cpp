@@ -33,15 +33,15 @@ int msgHandler(void *context, char *topicName, int topicLen, MQTTClient_message 
     cout << "message payload: " << (char*) message->payload << endl;
 
     if(topicLen == 0) {
-        int machineId = 0;  
-        int* mcStArr = (int*)context;      
+        int machineId = 0;
+        int* mcStArr = (int*)context;
         if(!strcmp(TOPIC_STATERX(1) , topicName)) machineId = 1;
         else if(!strcmp(TOPIC_STATERX(2) , topicName)) machineId = 2;
-        
+
         if(machineId) {
             if(!strcmp((char*)message->payload, "Off")) mcStArr[machineId-1] = 0;
             if(!strcmp((char*)message->payload, "On")) mcStArr[machineId-1] = 1;
-        }    
+        }
         cout << "States: Machine[1]-> " << mcStArr[0] << " Machine[2]-> " << mcStArr[1] << endl;
     }
 
@@ -85,7 +85,7 @@ void getMachinesData(int mcId, char* txtPayload, int *txtLen){
     srand(rtime);
     // create an object
     json o;
-    
+
     o["machinesdata"]["id"]    = mcId;
     o["machinesdata"]["state"] = "On";
     o["machinesdata"]["onlinehours"]      = (rand() % (int)1E6);
@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
     char txMsg[256];
     int  txLen;
     bool txSendFlag = false;
-    
+
     // Variables to non-sleep time control
     time_t time1;
     time(&time1);
@@ -147,7 +147,7 @@ int main(int argc, char* argv[])
 	opts.username = "sistcauser";
 	opts.password = "sistcapass";
 	opts.MQTTVersion = MQTTVERSION_5;
-    
+
     response = MQTTClient_connect5(client, &opts, &props, &willProps);
     if (response.reasonCode != MQTTCLIENT_SUCCESS){
         cerr << "Failed to connect, reason code: " << response.reasonCode
@@ -173,11 +173,11 @@ int main(int argc, char* argv[])
         {
             time(&time1);
             if(difftime(time1, time0) >= SEND_INTERVAL) {
-                
+
                 time0 = time1;
 
                 cout << "\n" << (char*) ctime(&time0) << "Sending New Report\n" << endl;
-                
+
                 for(int i=0; i<4; i++){
                     // Clean txt buffers
                     memset(txTopic, '\0', sizeof(txTopic));
@@ -235,7 +235,7 @@ int main(int argc, char* argv[])
                 }
 
             }
-        }      
+        }
 
         response = MQTTClient_unsubscribe5(client, TOPIC_STATERX(+), &props);
         if(response.reasonCode != MQTTCLIENT_SUCCESS) {
@@ -253,7 +253,7 @@ int main(int argc, char* argv[])
     }
     else cout << "Disconnect successful, reason code: " << rc
               << " - " << MQTTReasonCode_toString((MQTTReasonCodes)rc) << endl;
-    
+
     MQTTClient_destroy(&client);
 
     return EXIT_SUCCESS;
