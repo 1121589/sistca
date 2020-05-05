@@ -83,6 +83,7 @@ void getMachinesData(int mcId, char* txtPayload, int *txtLen){
 
     time_t rtime = time(&rtime) + mcId;
     srand(rtime);
+
     // create an object
     json o;
 
