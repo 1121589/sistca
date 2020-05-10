@@ -53,13 +53,13 @@ int msgHandler(void *context, char *topicName, int topicLen, MQTTClient_message 
 void getRawMatsData(char* txt, int *txtLen){
 
     srand(time(0));
-    int max1 = 1E9;
+
     // create an object
     json o;
-    o["rawmatsdata"]["water"]  = rand() % (int)1E4;
-    o["rawmatsdata"]["cotton"] = rand() % (int)1E4;
-    o["rawmatsdata"]["latex"]  = rand() % (int)1E4;
-    o["rawmatsdata"]["wood"]   = rand() % (int)1E4;
+    o["rawmatsdata"]["water"]  = rand() % (int)1E3;
+    o["rawmatsdata"]["cotton"] = rand() % (int)1E3;
+    o["rawmatsdata"]["latex"]  = rand() % (int)1E3;
+    o["rawmatsdata"]["wood"]   = rand() % (int)1E3;
 
     *txtLen = o.dump().length();
     strcpy(txt, o.dump().c_str()); // Serialize message
@@ -68,7 +68,7 @@ void getRawMatsData(char* txt, int *txtLen){
 void getSensorsData(char* txt, int *txtLen){
 
     srand(time(0));
-    int max1 = 1E9;
+
     // create an object
     json o;
     o["factorydata"]["temperature"] = rand() % 50;
@@ -89,8 +89,8 @@ void getMachinesData(int mcId, char* txtPayload, int *txtLen){
 
     o["machinesdata"]["id"]    = mcId;
     o["machinesdata"]["state"] = "On";
-    o["machinesdata"]["onlinehours"]      = (rand() % (int)1E6);
-    o["machinesdata"]["maintenancehours"] = rand() % (int)1E6;
+    o["machinesdata"]["onlinehours"]      = (rand() % (int)1E4);
+    o["machinesdata"]["maintenancehours"] = rand() % (int)1E4;
     o["machinesdata"]["hourproduction"]   = rand() % (int)1E3;
     o["machinesdata"]["percdefects"]      = rand() % (int)1E2;
 
