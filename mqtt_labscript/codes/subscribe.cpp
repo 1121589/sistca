@@ -3,7 +3,7 @@
 
 #define ADDRESS     "localhost:1883"
 #define CLIENTID    "SistcaStudent"
-#define TOPIC       "sistca/tutorial/machines/1/production"
+#define TOPIC       "sistca/tutorial/machines/1/hourproduction"
 #define TIMEOUT     10000L
 #define QOS         0
 
