@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 	opts.MQTTVersion = MQTTVERSION_5;
     
     response = MQTTClient_connect5(client, &opts, &props, &willProps);
-    if (response.reasonCode != MQTTCLIENT_SUCCESS){
+    if( response.reasonCode != MQTTCLIENT_SUCCESS && response.reasonCode != QOS) {
         cerr << "Failed to connect, reason code: " << response.reasonCode
              << " - " <<  MQTTReasonCode_toString(response.reasonCode) << endl;
         exit(EXIT_FAILURE);
