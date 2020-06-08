@@ -13,10 +13,10 @@ int main(int argc, char* argv[])
 {
     MQTTClient client;
     MQTTClient_createOptions createOpts = MQTTClient_createOptions_initializer;
-	MQTTClient_connectOptions opts = MQTTClient_connectOptions_initializer5;
-	MQTTProperties props = MQTTProperties_initializer;
+    MQTTClient_connectOptions opts = MQTTClient_connectOptions_initializer5;
+    MQTTProperties props = MQTTProperties_initializer;
     MQTTClient_willOptions wopts = MQTTClient_willOptions_initializer;
-	MQTTProperties willProps = MQTTProperties_initializer;
+    MQTTProperties willProps = MQTTProperties_initializer;
     MQTTResponse response = MQTTResponse_initializer;
     int rc = 0;
 
