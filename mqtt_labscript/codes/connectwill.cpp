@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
     }
 
     opts.keepAliveInterval = 20;
-    opts.cleanstart = 1;
+    opts.cleansession = 1;
     opts.username = "Admin";
     opts.password = "Admin";
     opts.MQTTVersion = MQTTVERSION_5;
