@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+
+  cpuinfo-src:
+    image: docker.pkg.github.com/txroot/sistca/cpuinfo:src_x64
+
+  cpuinfo:
+    image: docker.pkg.github.com/txroot/sistca/cpuinfo:dist_x64
+    depends_on:
+      - cpuinfo-src
